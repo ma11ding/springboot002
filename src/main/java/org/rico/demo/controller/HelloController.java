@@ -22,7 +22,7 @@ public class HelloController {
     @RequestMapping("/")
     @ResponseBody
     public String hello() {oiuoiuouoiuoiou;
-
+asdwefwqefwfe
         log.info("----调试----");
         return "Hello, Spring boot.";
     }
