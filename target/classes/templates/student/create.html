@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Create</title>
+    <link rel="stylesheet" href="css/index.css"/>
+
+</head>
+<body>
+
+    <center>
+        <h4>Welcome to Create.</h4>
+        <form action="/studentCreate" method="post">
+            <table>
+                <tr>
+                    <td>
+                        Student Name
+                    </td>
+                    <td>
+                        <input type="text" name="name"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Student Age
+                    </td>
+                    <td>
+                        <input type="text" name="age"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="submit" value="New"/>
+                    </td>
+                    <td>
+                        <input type="reset" name="Rest"/>
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+    </center>
+
+</body>
+</html>

@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Index</title>
+</head>
+<body>
+    <h1>Welcome to Index.</h1>
+    <h3 th:text="${student.name + ' | ' + student.id + ' | ' + student.age}"></h3>
+</body>
+</html>

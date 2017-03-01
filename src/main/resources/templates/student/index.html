@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Index</title>
+   <style>
+
+       *{
+
+       }
+
+       body {
+           background-color: #ffff00;
+
+
+       }
+
+       .container {
+           height: 300px;
+           /* background-color: blue; */
+           display: flex;
+           flex-flow: row;
+
+       }
+
+       .left {
+           width: 50%;
+           height: 300px;
+           /* background-color: red; */
+           /* float: left; */
+           /* border-right:  2px solid white; */
+       }
+
+
+       .right {
+
+           height: 300px;
+           /* background-color: yellow; */
+           /* float: left; */
+       }
+
+       a {
+           color: #FFFFFF;
+       }
+
+       table {
+            border: 1px solid indianred;
+       }
+       td{
+           border: 1px solid salmon;
+       }
+       img{
+           border: 1px solid royalblue;
+           width: 50px;height: 50px;
+       }
+
+   </style>
+    <script type="text/javascript" src="/js/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript">
+    $(function () {
+        function checkSelected() {
+            //alert("--");
+            var i = 0;
+            var _id = 0;
+            $('input[type="checkbox"]').each(function(){
+                //alert( $(this).prop('checked'));
+                if($(this).prop('checked')) {
+                    i++;
+                    _id = $(this).prop('value');
+                }
+            });
+
+            if(i == 0) {
+                alert("请选择");
+                return 0;
+            }
+
+            if(i > 1) {
+                alert("请选择");
+                return 0;
+            }
+            //alert(_id);
+            alert(_id);
+            return _id;
+        }
+        //删除
+        $('#Remove').click(function(e){
+            e.preventDefault();
+            var id=checkSelected();
+            window.location.href="/delete/"+id;
+        });
+        //修改
+        $('#modify').click(function(e){
+            e.preventDefault();
+            var id=checkSelected();
+            location.href="/modify/"+id;
+        });
+        //增加
+        $("#new").click(function(e){
+            e.preventDefault();
+            location.href="/addStudent";
+        });
+    });
+
+</script>
+
+
+</head>
+<body>
+    <center> <h4 >Welcome to Index.</h4></center>
+    <div class="container">
+
+        <div  class="left">
+            <table >
+                <tr>
+                    <th>
+                    </th>
+                    <th>
+                        Student ID
+                    </th>
+                    <th>
+                        Student Name
+                    </th>
+                    <th>
+                        Student Age
+                    </th>
+                </tr>
+                <tr th:each="student : ${students}">
+                    <td>
+                        <input type="checkbox"  name="chx" th:value="${student.id}" />
+                    </td>
+                    <td th:text="${student.id}">id</td>
+                    <td th:text="${student.name}">name</td>
+                    <td th:text="${student.age}">age</td>
+                </tr>
+            </table>
+            当前第<span th:text="${pageNo}+'页'"></span>
+            &nbsp;
+            共分<span  th:text="${pagerCount}+'页'"></span>
+            &nbsp;
+            每页显示<span th:text="${size}+'页'"></span>
+            &nbsp;
+            <a th:href="@{/student/index}">首页</a>
+            <a th:href="@{/student/index(pageString=${pagerCount})}">尾页</a>
+            <a th:href= "@{/student/index(pageString=${pageNo}+1)}">下一页</a>
+            <a th:href= "@{/student/index(pageString=${pageNo}-1)}">上一页</a>
+
+            <hr/>
+
+            <a href="" id="new">New</a> &nbsp;&nbsp; <a href="" id="modify">Modify</a> &nbsp; &nbsp; <a href="" id="Remove">Remove</a>
+
+
+            <form action="${pageContext.request.contextPath}/upload.html" enctype="multipart/form-data"
+                  method="post">
+                <table>
+                    <tr>
+                        <td>
+                            上传文件
+                        </td>
+                        <td>
+                            <input type="file" name="fileUpload"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            上传文件描述
+                        </td>
+                        <td>
+                            <input type="text" name="fileDes"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            上传文件的标题
+                        </td>
+                        <td>
+                            <input type="text" name="fileTitle"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button>上传</button>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+            &nbsp;&nbsp;&nbsp;
+            <a href="${pageContext.request.contextPath}/download.html">下载</a>
+    </div>
+
+        <div class="right">
+            <img src=""/>
+            <p></p>
+            <button id="btnAjaxStudent">Ajax a student</button>
+            &nbsp; &nbsp;
+            <button id="btnAjaxStudents">Ajax students</button>
+        </div>
+    </div>
+
+
+
+
+</body>
+</html>
